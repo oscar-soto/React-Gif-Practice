@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const AddCategory = ({ setCategories }) => {
+export const AddCategory = ({ onNewCategory }) => {
   const [inputValue, setinputValue] = useState('');
   const handlerInput = ({ target }) => {
     const value = target.value;
@@ -9,11 +9,13 @@ export const AddCategory = ({ setCategories }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const newInputValue = inputValue.trim()
 
     // Validar que tenga mas de un caracter
-    if (inputValue.trim().length <= 1) return;
+    if (newInputValue.length <= 1) return;
 
-    setCategories((categories) => [inputValue, ...categories]);
+    // setCategories((categories) => [inputValue, ...categories]);
+    onNewCategory(newInputValue)
     setinputValue('')
   };
 
